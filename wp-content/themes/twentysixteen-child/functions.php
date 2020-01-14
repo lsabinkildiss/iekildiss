@@ -1,0 +1,24 @@
+<?php
+/**
+* IEKILDISS Child functions and definitions
+*
+* @link http://codex.wordpress.org/Theme_Development
+* @link http://codex.wordpress.org/Child_Themes
+*
+* @package WordPress
+* @subpackage LSK Media Consulting
+* @since LSK media
+*/
+// Enqueue scripts and styles
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
+function my_theme_enqueue_styles() {
+
+    $parent_style = 'parent-style'; // This is 'twentysixteen-style' for the Twenty Sixteen theme.
+
+    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'child-style',
+        get_stylesheet_directory_uri() . '/style.css',
+        array( $parent_style ),
+        wp_get_theme()->get('Version')
+    );
+}
